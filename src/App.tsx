@@ -1,25 +1,56 @@
-import React from "react";
-import logo from "./logo.svg";
+import { useState } from "react";
+import "./styles.css";
+import { Gentleman } from "./types";
 
-function App() {
+const App = (): JSX.Element => {
+  const [gentlemenList, setGentlemenList] = useState<Gentleman[]>([
+    {
+      id: 1,
+      name: "Bertin Osborne",
+      status: "Alive",
+      profession: "Youtuber",
+      twitter: "@osbourne",
+      picture: "bertin.jpg",
+      alternativeText: "Osbourne pointing at you",
+      selected: true,
+    },
+    {
+      id: 2,
+      name: "The Farytale",
+      status: "RIP",
+      profession: "Influencer",
+      twitter: "pending",
+      picture: "fary.jpg",
+      alternativeText: "The Fary pointing at you",
+      selected: false,
+    },
+    {
+      id: 3,
+      name: "Julius Churchs",
+      status: "Alive",
+      profession: "Java developer",
+      twitter: "@julius_churchs",
+      picture: "julio.jpg",
+      alternativeText: "Churchs pointing at you",
+      selected: true,
+    },
+  ]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div className="container">
+      <header className="main-header">
+        <h1 className="main-title">The pointing gentlemen</h1>
       </header>
+      <section className="controls"></section>
+      <main className="main">
+        <ul className="gentlemen">
+          {gentlemenList.map(() => (
+            <li className="gentleman"></li>
+          ))}
+        </ul>
+      </main>
     </div>
   );
-}
+};
 
 export default App;
