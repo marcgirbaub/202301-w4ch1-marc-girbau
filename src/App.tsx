@@ -4,7 +4,7 @@ import "./styles.css";
 import { Gentleman } from "./types";
 
 const App = (): JSX.Element => {
-  const [gentlemenList, setGentlemenList] = useState<Gentleman[]>([
+  const [gentlemenList] = useState<Gentleman[]>([
     {
       id: 1,
       name: "Bertin Osborne",
