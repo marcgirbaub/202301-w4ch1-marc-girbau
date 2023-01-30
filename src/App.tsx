@@ -1,9 +1,10 @@
 import { useState } from "react";
+import Info from "./components/Info/Info";
 import "./styles.css";
 import { Gentleman } from "./types";
 
 const App = (): JSX.Element => {
-  const [gentlemenList, setGentlemenList] = useState<Gentleman[]>([
+  const [gentlemenList] = useState<Gentleman[]>([
     {
       id: 1,
       name: "Bertin Osborne",
@@ -41,7 +42,13 @@ const App = (): JSX.Element => {
       <header className="main-header">
         <h1 className="main-title">The pointing gentlemen</h1>
       </header>
-      <section className="controls"></section>
+      <section className="controls">
+        <Info
+          pointingGentlemen={
+            gentlemenList.filter((gentleman) => gentleman.selected).length
+          }
+        />
+      </section>
       <main className="main">
         <ul className="gentlemen">
           {gentlemenList.map(() => (
