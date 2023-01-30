@@ -6,10 +6,20 @@ interface GentlemanProps {
 }
 
 const Genlteman = ({
-  gentleman: { name, profession, status, twitter, alternativeText, picture },
+  gentleman: {
+    name,
+    profession,
+    status,
+    twitter,
+    alternativeText,
+    picture,
+    selected,
+  },
 }: GentlemanProps): JSX.Element => {
+  const isSelected = selected ? "selected" : "";
+
   return (
-    <li className="gentleman">
+    <li className={`gentleman ${isSelected}`}>
       <div className="gentleman__avatar-container">
         <img
           src={picture}
@@ -21,15 +31,15 @@ const Genlteman = ({
       <div className="gentleman__data-container">
         <h2 className="gentleman__name">{name}</h2>
         <ul className="gentleman__data-list">
-          <li className="genlteman__data">
-            <span className="genlteman__data-label">Profession:</span>
+          <li className="gentleman__data">
+            <span className="gentleman__data-label">Profession:</span>
             {profession}
           </li>
           <li className="gentleman__data">
             <span className="gentleman__data-label">Status:</span>
             {status}
           </li>
-          <li className="genlteman__data">
+          <li className="gentleman__data">
             <span className="gentleman__data-label">Twitter:</span>
             {twitter}
           </li>
