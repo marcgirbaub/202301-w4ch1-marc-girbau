@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Button from "./components/Button/Button";
+import Genlteman from "./components/Gentleman/Gentleman";
 import Info from "./components/Info/Info";
 import "./styles.css";
 import { Gentleman } from "./types";
@@ -21,7 +22,7 @@ const App = (): JSX.Element => {
       name: "The Farytale",
       status: "RIP",
       profession: "Influencer",
-      twitter: "pending",
+      twitter: "Pending",
       picture: "fary.jpg",
       alternativeText: "The Fary pointing at you",
       selected: false,
@@ -55,7 +56,7 @@ const App = (): JSX.Element => {
         name: "The Farytale",
         status: "RIP",
         profession: "Influencer",
-        twitter: "pending",
+        twitter: "Pending",
         picture: "fary.jpg",
         alternativeText: "The Fary pointing at you",
         selected: true,
@@ -88,8 +89,8 @@ const App = (): JSX.Element => {
       </section>
       <main className="main">
         <ul className="gentlemen">
-          {gentlemenList.map(() => (
-            <li className="gentleman"></li>
+          {gentlemenList.map((gentleman, position) => (
+            <Genlteman gentleman={gentlemenList[position]} />
           ))}
         </ul>
       </main>
