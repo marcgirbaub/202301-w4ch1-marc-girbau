@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Button from "./components/Button/Button";
+import Genlteman from "./components/Gentleman/Gentleman";
 import Info from "./components/Info/Info";
 import "./styles.css";
 import { Gentleman } from "./types";
@@ -21,7 +22,7 @@ const App = (): JSX.Element => {
       name: "The Farytale",
       status: "RIP",
       profession: "Influencer",
-      twitter: "pending",
+      twitter: "Pending",
       picture: "fary.jpg",
       alternativeText: "The Fary pointing at you",
       selected: false,
@@ -39,38 +40,13 @@ const App = (): JSX.Element => {
   ]);
 
   const selectAll = () => {
-    setGentlemenList([
-      {
-        id: 1,
-        name: "Bertin Osborne",
-        status: "Alive",
-        profession: "Youtuber",
-        twitter: "@osbourne",
-        picture: "bertin.jpg",
-        alternativeText: "Osbourne pointing at you",
-        selected: true,
-      },
-      {
-        id: 2,
-        name: "The Farytale",
-        status: "RIP",
-        profession: "Influencer",
-        twitter: "pending",
-        picture: "fary.jpg",
-        alternativeText: "The Fary pointing at you",
-        selected: true,
-      },
-      {
-        id: 3,
-        name: "Julius Churchs",
-        status: "Alive",
-        profession: "Java developer",
-        twitter: "@julius_churchs",
-        picture: "julio.jpg",
-        alternativeText: "Churchs pointing at you",
-        selected: true,
-      },
-    ]);
+    setGentlemenList(
+      gentlemenList.map((gentleman) =>
+        gentleman.selected === false
+          ? { ...gentleman, selected: true }
+          : gentleman
+      )
+    );
   };
 
   return (
@@ -88,8 +64,18 @@ const App = (): JSX.Element => {
       </section>
       <main className="main">
         <ul className="gentlemen">
-          {gentlemenList.map(() => (
-            <li className="gentleman"></li>
+          {gentlemenList.map((gentleman, position) => (
+            <Genlteman
+              gentleman={gentlemenList[position]}
+              deleteGentleman={() => {
+                setGentlemenList(
+                  gentlemenList.filter(
+                    (gentlemanInFilter, positionInFilter) =>
+                      positionInFilter !== gentlemenList.indexOf(gentleman)
+                  )
+                );
+              }}
+            />
           ))}
         </ul>
       </main>
