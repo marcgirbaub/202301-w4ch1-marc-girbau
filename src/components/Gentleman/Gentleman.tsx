@@ -3,6 +3,7 @@ import { Gentleman } from "../../types";
 
 interface GentlemanProps {
   gentleman: Gentleman;
+  deleteGentleman: () => void;
 }
 
 const Genlteman = ({
@@ -15,6 +16,7 @@ const Genlteman = ({
     picture,
     selected,
   },
+  deleteGentleman,
 }: GentlemanProps): JSX.Element => {
   const isSelected = selected ? "selected" : "";
 
@@ -46,7 +48,10 @@ const Genlteman = ({
         </ul>
       </div>
       <i className="icon gentleman__icon fas fa-check"></i>
-      <i className="icon gentleman__icon gentleman__icon--delete fas fa-times"></i>
+      <i
+        className="icon gentleman__icon gentleman__icon--delete fas fa-times"
+        onClick={deleteGentleman}
+      ></i>
     </li>
   );
 };

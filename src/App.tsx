@@ -40,38 +40,13 @@ const App = (): JSX.Element => {
   ]);
 
   const selectAll = () => {
-    setGentlemenList([
-      {
-        id: 1,
-        name: "Bertin Osborne",
-        status: "Alive",
-        profession: "Youtuber",
-        twitter: "@osbourne",
-        picture: "bertin.jpg",
-        alternativeText: "Osbourne pointing at you",
-        selected: true,
-      },
-      {
-        id: 2,
-        name: "The Farytale",
-        status: "RIP",
-        profession: "Influencer",
-        twitter: "Pending",
-        picture: "fary.jpg",
-        alternativeText: "The Fary pointing at you",
-        selected: true,
-      },
-      {
-        id: 3,
-        name: "Julius Churchs",
-        status: "Alive",
-        profession: "Java developer",
-        twitter: "@julius_churchs",
-        picture: "julio.jpg",
-        alternativeText: "Churchs pointing at you",
-        selected: true,
-      },
-    ]);
+    setGentlemenList(
+      gentlemenList.map((gentleman) =>
+        gentleman.selected === false
+          ? { ...gentleman, selected: true }
+          : gentleman
+      )
+    );
   };
 
   return (
@@ -90,7 +65,17 @@ const App = (): JSX.Element => {
       <main className="main">
         <ul className="gentlemen">
           {gentlemenList.map((gentleman, position) => (
-            <Genlteman gentleman={gentlemenList[position]} />
+            <Genlteman
+              gentleman={gentlemenList[position]}
+              deleteGentleman={() => {
+                setGentlemenList(
+                  gentlemenList.filter(
+                    (gentlemanInFilter, positionInFilter) =>
+                      positionInFilter !== gentlemenList.indexOf(gentleman)
+                  )
+                );
+              }}
+            />
           ))}
         </ul>
       </main>
